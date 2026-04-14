@@ -1,4 +1,5 @@
-# JobScope 🔍
+Automated Job Market Analytics Pipeline
+
 > An end-to-end data pipeline that scrapes, cleans, stores, and analyzes job market data — with a focus on tech/analytics roles.
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)
@@ -14,100 +15,18 @@ JobScope is a fully automated data pipeline that collects live job listings from
 
 It was built to demonstrate end-to-end data engineering and analytics skills — from raw scrape to business insight.
 
----
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        Data Sources                             │
-│   RemoteOK API · HN "Who's Hiring" · Public job boards         │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Automated Scraper                            │
-│   Scrapy spiders · Selenium · APScheduler (24hr delta loads)   │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                     Data Pipeline                               │
-│   Pandas · Regex normalization · Deduplication                 │
-│   Output: jobs.json + jobs_clean.csv                           │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                  PostgreSQL + ETL                               │
-│   4-table schema · SQLAlchemy · Indexes · Stored procedures    │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│              Analytics + Power BI Dashboard                     │
-│   scikit-learn salary model · 3-page Power BI report           │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
 ## Key Findings
 
 Based on ~10,000+ job listings across 350+ companies and 200+ unique skills:
 
 | Insight | Finding |
 |---|---|
-| 💰 Top salary skill premium | Rust adds ~$24k median over base Python roles |
-| 🏙️ Most genuinely remote-friendly city | Austin, TX — 68% of listings allow full remote |
-| 📈 Fastest growing skill (last 30 days) | dbt (+41% week-over-week demand) |
-| 🤖 Salary model accuracy | Gradient boosting, R² = 0.74, RMSE ≈ $11,200 |
+| Top salary skill premium | Rust adds ~$24k median over base Python roles |
+| Most genuinely remote-friendly city | Austin, TX — 68% of listings allow full remote |
+| Fastest growing skill (last 30 days) | dbt (+41% week-over-week demand) |
+| Salary model accuracy | Gradient boosting, R² = 0.74, RMSE ≈ $11,200 |
 
-> 📊 **[Screenshot placeholder — add your Power BI dashboard screenshot here]**
-
----
-
-## Project Structure
-
-```
-jobscope/
-├── scraper/            ← Scrapy spiders + Selenium scripts
-│   ├── spiders/
-│   │   ├── remoteok_spider.py
-│   │   └── hn_jobs_spider.py
-│   ├── selenium_scraper.py
-│   └── scheduler.py
-│
-├── pipeline/           ← Pandas cleaning + JSON/CSV output
-│   ├── clean.py
-│   ├── normalize_salary.py
-│   ├── normalize_skills.py
-│   └── dedup.py
-│
-├── db/                 ← Schema SQL files + SQLAlchemy models
-│   ├── schema.sql
-│   └── models.py
-│
-├── etl/                ← Load scripts + stored procedures
-│   ├── load_jobs.py
-│   └── procedures.sql
-│
-├── analysis/           ← Jupyter notebooks + ML model
-│   ├── eda.ipynb
-│   ├── salary_model.ipynb
-│   └── skill_trends.ipynb
-│
-├── dashboard/          ← Power BI .pbix file + screenshots
-│   ├── jobscope_dashboard.pbix
-│   └── screenshots/
-│
-├── data/
-│   └── samples/        ← Sample dirty + clean data (not full dump)
-│       ├── raw_sample.json
-│       └── clean_sample.csv
-│
-└── README.md
-```
+> **[Screenshot placeholder — add your Power BI dashboard screenshot here]**
 
 ---
 

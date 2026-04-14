@@ -1,6 +1,6 @@
 ## Automated Job Market Analytics Pipeline
 
-> An end-to-end data pipeline that scrapes, cleans, stores, and analyzes job market data — with a focus on tech/analytics roles.
+> An end-to-end data pipeline that scrapes, cleans, stores, and analyzes job market data — with a focus on tech/analytics roles. Full implementation and dataset are not publicly available due to client confidentiality. This repository will contain a representative subset demonstrating pipeline architecture and core logic in the near future.
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?style=flat-square)
